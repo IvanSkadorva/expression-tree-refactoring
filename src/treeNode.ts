@@ -6,34 +6,26 @@ export const TreeNode = (
   left: any,
   right: any
 ) => {
-  const result = function () {
-    switch (operator) {
-      case "+":
-        return left.result() + right.result();
-      case "-":
-        return left.result() - right.result();
-      case "x":
-        return left.result() * right.result();
-      case "÷":
-        return left.result() / right.result();
-      default:
-        return value;
-    }
+  const result = () => {
+    const options = {
+      "+": () => left.result() + right.result(),
+      "-": () => left.result() - right.result(),
+      x: () => left.result() * right.result(),
+      "÷": () => left.result() / right.result(),
+      "": () => value,
+    };
+    return options[operator]();
   };
 
   const toString = function () {
-    switch (operator) {
-      case "+":
-        return `(${left.toString()} + ${right.toString()})`;
-      case "-":
-        return `(${left.toString()} - ${right.toString()})`;
-      case "x":
-        return `(${left.toString()} x ${right.toString()})`;
-      case "÷":
-        return `(${left.toString()} ÷ ${right.toString()})`;
-      default:
-        return value?.toString();
-    }
+    const options = {
+      "+": () => `(${left.toString()} + ${right.toString()})`,
+      "-": () => `(${left.toString()} - ${right.toString()})`,
+      x: () => `(${left.toString()} x ${right.toString()})`,
+      "÷": () => `(${left.toString()} ÷ ${right.toString()})`,
+      "": () => value?.toString(),
+    };
+    return options[operator]();
   };
 
   return {
