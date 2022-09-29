@@ -1,4 +1,5 @@
 import { Operator } from "../types/operator";
+import operations from "../utils/operations";
 
 export const TreeNode = (
   operator: Operator | "",
@@ -7,12 +8,6 @@ export const TreeNode = (
   right: any = null
 ) => {
   const result = (): number | null => {
-    const operations = {
-      "+": (a: number, b: number): number => a + b,
-      "-": (a: number, b: number): number => a - b,
-      x: (a: number, b: number): number => a * b,
-      "÷": (a: number, b: number): number => a / b,
-    };
     if (operator && (left || right)) {
       return operations[operator](left.result(), right.result());
     }
