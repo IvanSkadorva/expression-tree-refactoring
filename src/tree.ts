@@ -1,6 +1,13 @@
+import { Operator } from "../models/types/operator";
+
 const assert = require("assert");
 
-const Node = (operator, value, left, right) => {
+const TreeNode = (
+  operator: Operator | "",
+  value: number | null,
+  left: any,
+  right: any
+) => {
   const result = function () {
     switch (operator) {
       case "+":
@@ -27,7 +34,7 @@ const Node = (operator, value, left, right) => {
       case "÷":
         return `(${left.toString()} ÷ ${right.toString()})`;
       default:
-        return value.toString();
+        return value?.toString();
     }
   };
 
@@ -37,25 +44,30 @@ const Node = (operator, value, left, right) => {
     left,
     right,
     result,
-    toString
+    toString,
   };
 };
 
-const tree = Node(
+const tree = TreeNode(
   "÷",
   null,
-  Node(
+  TreeNode(
     "+",
     null,
-    Node("", 7, null, null),
-    Node(
+    TreeNode("", 7, null, null),
+    TreeNode(
       "x",
       null,
-      Node("-", null, Node("", 3, null, null), Node("", 2, null, null)),
-      Node("", 5, null, null)
+      TreeNode(
+        "-",
+        null,
+        TreeNode("", 3, null, null),
+        TreeNode("", 2, null, null)
+      ),
+      TreeNode("", 5, null, null)
     )
   ),
-  Node("", 6, null, null)
+  TreeNode("", 6, null, null)
 );
 
 assert.strictEqual("((7 + ((3 - 2) x 5)) ÷ 6)", tree.toString());
