@@ -6,18 +6,13 @@ export const tree = TreeNode(
   TreeNode(
     "+",
     null,
-    TreeNode("", 7, null, null),
+    TreeNode("", 7),
     TreeNode(
       "x",
       null,
-      TreeNode(
-        "-",
-        null,
-        TreeNode("", 3, null, null),
-        TreeNode("", 2, null, null)
-      ),
-      TreeNode("", 5, null, null)
+      TreeNode("-", null, TreeNode("", 3), TreeNode("", 2)),
+      TreeNode("", 5)
     )
   ),
-  TreeNode("", 6, null, null)
+  TreeNode("", 6)
 );

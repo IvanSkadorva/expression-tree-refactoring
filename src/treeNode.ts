@@ -3,8 +3,8 @@ import { Operator } from "../models/types/operator";
 export const TreeNode = (
   operator: Operator | "",
   value: number | null,
-  left: any,
-  right: any
+  left: any = null,
+  right: any = null
 ) => {
   const result = () => {
     const options = {
@@ -17,15 +17,11 @@ export const TreeNode = (
     return options[operator]();
   };
 
-  const toString = function () {
-    const options = {
-      "+": () => `(${left.toString()} + ${right.toString()})`,
-      "-": () => `(${left.toString()} - ${right.toString()})`,
-      x: () => `(${left.toString()} x ${right.toString()})`,
-      "÷": () => `(${left.toString()} ÷ ${right.toString()})`,
-      "": () => value?.toString(),
-    };
-    return options[operator]();
+  const toString = () => {
+    if (operator && (left || right)) {
+      return `(${left.toString()} ${operator} ${right.toString()})`;
+    }
+    return value?.toString();
   };
 
   return {
