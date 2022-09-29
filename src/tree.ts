@@ -48,7 +48,7 @@ const TreeNode = (
   };
 };
 
-const tree = TreeNode(
+export const tree = TreeNode(
   "÷",
   null,
   TreeNode(
@@ -69,6 +69,3 @@ const tree = TreeNode(
   ),
   TreeNode("", 6, null, null)
 );
-
-assert.strictEqual("((7 + ((3 - 2) x 5)) ÷ 6)", tree.toString());
-assert.strictEqual(2, tree.result());
